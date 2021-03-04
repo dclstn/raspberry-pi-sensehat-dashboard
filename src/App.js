@@ -1,22 +1,14 @@
-import logo from './logo.svg';
+import 'rsuite/dist/styles/rsuite-dark.css';
 import './App.css';
+import DataChart from './components/DataCharts'
+import DataPanels from './components/DataPanels'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <DataPanels></DataPanels>
+        <DataChart></DataChart>
       </header>
     </div>
   );

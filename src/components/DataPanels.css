@@ -1,0 +1,23 @@
+.data-list {
+    margin-top: 20px;
+    width: 40%;
+    text-align: left;
+    font-size: 2vh
+}
+
+@media screen and (max-width:1400px) {
+
+    .data-list {
+        width: 60%;
+    }
+
+}
+
+@media screen and (max-width:900px) {
+
+    .data-list {
+        width: 90%;
+    }
+
+}
+
