@@ -1,8 +1,29 @@
 .data-list {
-    margin-top: 20px;
     width: 40%;
     text-align: left;
     font-size: 2vh
+}
+
+.toggle-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toggle-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.logo-text {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-text img {
+    width: 40px;
 }
 
 @media screen and (max-width:1400px) {

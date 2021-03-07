@@ -25,7 +25,7 @@ export default class DataChart extends React.Component {
 
     _fetchData() {
         this.setState({loading: true})
-        fetch(`http://192.168.0.200/api/csv`)
+        fetch(`/api/csv`)
             .then(response => {
                 if (response.status === 200) return response.json()
                 throw new Error(response.json())
@@ -33,7 +33,7 @@ export default class DataChart extends React.Component {
             .then(responseJSON => {
                 this.setState({
                     success: true,
-                    data: responseJSON.splice(-10, 10),
+                    data: responseJSON.splice(-20, 20),
                     loading: false
                 });
                 this.transformData()
@@ -50,7 +50,7 @@ export default class DataChart extends React.Component {
     transformData() {
 
 
-      this.setState({dates: this.state.data.map(each => {
+      this.setState({dates: this.state.data.map((each, index) => {
         const date = new Date(each.date * 1);
         const hours = date.getHours();
         const minutes = "0" + date.getMinutes();
@@ -67,10 +67,11 @@ export default class DataChart extends React.Component {
               label: 'Humidity (%)',
               data: this.state.data.map(each => each.humidity),
               fill: true,
-              backgroundColor: "rgba(255, 173, 173, 0.3)"
+              backgroundColor: "rgba(255, 214, 165, 0.3)"
             }
           ]
         },
+
         temperatureData: {
           labels: this.state.dates,
           datasets:[
@@ -78,10 +79,11 @@ export default class DataChart extends React.Component {
               label: 'Temperature (C)',
               data: this.state.data.map(each => each.temperature),
               fill: true,
-              backgroundColor: "rgba(255, 214, 165, 0.3)"
+              backgroundColor: "rgba(202, 255, 191, 0.3)"
             }
-          ]
+          ],
         },
+
         pressureData: {
           labels: this.state.dates,
           datasets:[
@@ -89,7 +91,7 @@ export default class DataChart extends React.Component {
               label: 'Air Pressure (Millibars)',
               data: this.state.data.map(each => each.pressure),
               fill: true,
-              backgroundColor: "rgba(202, 255, 191, 0.3)"
+              backgroundColor: "rgba(255, 173, 173, 0.3)"
             }
           ]
         }

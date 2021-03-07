@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <DataPanels></DataPanels>
+        <DataPanels></DataPanels>
         <DataChart></DataChart>
       </header>
     </div>
