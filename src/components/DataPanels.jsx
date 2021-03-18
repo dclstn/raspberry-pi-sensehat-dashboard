@@ -14,6 +14,12 @@ const emailTooltip = (temp) => (
   </Tooltip>
 );
 
+const waterTooltip = (humidity) => (
+  <Tooltip>
+    <i>Automatically turn on water vapor when below {Math.floor(humidity)} %</i>
+  </Tooltip>
+);
+
 
 
 export default class DataPanels extends React.Component {
@@ -26,9 +32,11 @@ export default class DataPanels extends React.Component {
         temperature: 0,
         loading: false,
         fanThreshold: 50,
+        waterThreshold: 50,
         emailThreshold: 50,
         fanSlider: undefined,
         emailSlider: undefined,
+        waterSlider: undefined,
         fan: 1
       };
     }
@@ -64,6 +72,7 @@ export default class DataPanels extends React.Component {
                     fan: responseJSON.FanStatus,
                     emailThreshold: responseJSON.thresholds.emailThreshold,
                     fanThreshold: responseJSON.thresholds.fanThreshold,
+                    waterThreshold: responseJSON.thresholds.waterThreshold,
                     emailSlider: this.state.emailSlider || responseJSON.thresholds.emailThreshold,
                     fanSlider: this.state.fanSlider || responseJSON.thresholds.fanThreshold,
                     data: responseJSON,
@@ -184,12 +193,12 @@ export default class DataPanels extends React.Component {
             <List.Item key={8} index={8}>
               <div className="toggle-slider">
                 <div>
-                <Whisper placement="top" trigger="hover" speaker={emailTooltip(this.state.emailThreshold)}>
+                <Whisper placement="top" trigger="hover" speaker={waterTooltip(this.state.waterThreshold)}>
                   <p>Humidity Threshold</p>
                 </Whisper>
                 </div>
                 <div>
-                { this.state.success && (<Slider defaultValue={this.state.emailThreshold} onChange={(value) => this.setState({emailSlider: value})} progress></Slider>) }
+                { this.state.success && (<Slider defaultValue={this.state.waterThreshold} onChange={(value) => this.setState({waterSlider: value})} progress></Slider>) }
                 </div>
               </div>
             </List.Item>
